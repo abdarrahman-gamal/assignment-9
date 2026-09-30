@@ -1,171 +1,718 @@
+/* إستخراج مجموعة الألوان بالذكاءالإصطناعى  */
+
+
+/**
+ * ==============================================================================
+ * DESIGN SYSTEM COLOR TOKENS & GRADIENTS (ContactHub)
+ * نظام متغيرات الألوان والتدرجات الوظيفية مع دعم البدائل (Fallbacks)
+ * ==============================================================================
+ */
+
 :root {
-    /* نظام المسافات والتدرجات الأساسية */
-    --spacing: 4px;
-    --logo-grad: linear-gradient(to right bottom, oklch(0.705 0.213 47.604) 0%, oklch(0.637 0.237 25.331) 100%);
-    
-    /* لوحة درجات البرتقالي */
-    --orange-2: #FFB86A;
-    --orange-3: #FFEDD4;
-    --orange-4: #FFF9EC;
-    --orange-dark: #F54900;
-    --bs-body-bg: var(--orange-4);
+   /* ==========================================================================
+     1. ألوان الهوية البصرية (Brand & Primary Actions)
+     تُستخدم للأزرار الرئيسية، الشعار، والعناصر المميزة
+     ========================================================================== */
+   --color-brand-primary: #7c3aed;
+   /* البنفسجي الأساسي (Violet 600) */
+   --color-brand-primary-hover: #6d28d9;
+   /* درجة التمرير (Violet 700) */
+   --color-brand-secondary: #4f46e5;
+   /* النيلي التكميلي (Indigo 600) */
+   --color-brand-light: #ede9fe;
+   /* خلفية ناعمة للهوية (Violet 100) */
+   --color-brand-lightest: #f5f3ff;
+   /* خلفية شفافة جداً (Violet 50) */
+   --color-brand-focus-ring: rgba(139, 92, 246, 0.2);
+   /* هالة التركيز (Violet 500/20) */
 
-    /* درجات الوردي */
-    --pink-subtle: #fce7f3;
-    --pink-dark: #db2777;
+   /* ==========================================================================
+     2. الخلفيات والأسطح والتعتيم (Surfaces & Layout)
+     تُستخدم لبطاقات العرض، خلفية الصفحة، الهيدر، والنوافذ المنبثقة
+     ========================================================================== */
+   --color-surface-page: #f8fafc;
+   /* خلفية التطبيق العامة */
+   --color-surface-card: #ffffff;
+   /* أسطح البطاقات والحاويات */
+   --color-surface-card-muted: #f9fafb;
+   /* تذييل البطاقات والمناطق الهادئة (Gray 50) */
+   --color-surface-input: #f9fafb;
+   /* خلفية حقول الإدخال */
+   --color-surface-input-hover: #f3f4f6;
+   /* خلفية الحقول عند التمرير (Gray 100) */
+   --color-surface-header: rgba(255, 255, 255, 0.7);
+   /* هيدر زجاجي (White 70%) */
+   --color-surface-overlay: rgba(16, 24, 40, 0.6);
+   /* تعتيم خلف المودال (Gray 900/60) */
 
-    /* إعدادات بطاقات ومكونات الوصفة */
-    --recipe-scroll-height: 350px;
-    --ingredient-badge-size: calc(6 * var(--spacing));
-    --ingredient-bg-gradient: linear-gradient(135deg, var(--orange-4) 0%, var(--orange-3) 100%);
-    --tab-font-size: clamp(0.6rem, 2.2vw, 1rem);
-    --btn-hover-scale: 1.05;
+   /* ==========================================================================
+     3. ألوان النصوص والطباعة (Text & Typography)
+     مقسّمة حسب الأهمية البصرية للنص
+     ========================================================================== */
+   --color-text-primary: #111827;
+   /* العناوين الرئيسية والنصوص الداكنة (Gray 900) */
+   --color-text-secondary: #374151;
+   /* النصوص العادية وعناوين الحقول (Gray 700) */
+   --color-text-body: #4b5563;
+   /* النصوص التوضيحية والتفاصيل (Gray 600) */
+   --color-text-muted: #6b7280;
+   /* النصوص الثانوية والأيقونات الهادئة (Gray 500) */
+   --color-text-placeholder: #9ca3af;
+   /* نصوص الإرشاد داخل الحقول (Gray 400) */
+   --color-text-inverse: #ffffff;
+   /* النصوص البيضاء على الخلفيات الملونة */
 
-    /* تلميحات الشيف */
-    --tip-bg: var(--orange-4);
-    --tip-border: var(--orange-2);
+   /* ==========================================================================
+     4. الحدود والفواصل (Borders & Dividers)
+     ========================================================================== */
+   --color-border-subtle: #f3f4f6;
+   /* فواصل داخلية خفيفة (Gray 100) */
+   --color-border-card: #e5e7eb;
+   /* حدود البطاقات والحقول (Gray 200) */
+   --color-border-card-subtle: rgba(229, 231, 235, 0.5);
+   /* حدود شفافة للهيدر */
+   --color-border-input: #d1d5db;
+   /* حدود الحقول ومربعات الاختيار (Gray 300) */
+   --color-border-focus: var(--color-brand-primary);
+   /* حدود الحقل عند التركيز */
+   --color-border-error: #ef4444;
+   /* حدود الخطأ في الحقول (Red 500) */
 
-    /* تنبيهات الوقت */
-    --alert-red-bg: #fef2f2;
-    --alert-red-border: #ef4444;
-    --alert-red-title: #991b1b;
-    --alert-red-desc: #dc2626;
+   /* ==========================================================================
+     5. الحالات التفاعلية والوظائف (Functional & States)
+     ========================================================================== */
+   /* أ) المفضلة (Favorite / Starred) */
+   --color-favorite-icon: #f59e0b;
+   /* النجمة والأيقونة (Amber 400/500) */
+   --color-favorite-bg: #fffbeb;
+   /* خلفية ناعمة للشارة (Amber 50) */
+   --color-favorite-bg-hover: #fef3c7;
+   /* خلفية عند التمرير (Amber 100) */
+   --color-favorite-border: #fde68a;
+   /* حدود حالة المفضلة (Amber 200) */
 
+   /* ب) جهات الطوارئ والحذف (Emergency / Danger / Delete) */
+   --color-emergency-icon: #f43f5e;
+   /* نبض الطوارئ (Rose 500) */
+   --color-emergency-text: #e11d48;
+   /* نصوص الطوارئ (Rose 600) */
+   --color-emergency-bg: #fff1f2;
+   /* خلفية ناعمة لحالة الطوارئ (Rose 50) */
+   --color-emergency-bg-hover: #ffe4e6;
+   /* خلفية عند التمرير (Rose 100) */
+   --color-emergency-border: #fecdd3;
+   /* حدود حالة الطوارئ (Rose 200) */
+   --color-action-delete: #dc2626;
+   /* زر تأكيد الحذف (Red 600) */
 
-      --recipe-img-mobile-height: 400px;
+   /* ج) الاتصال السريع (Call Action) */
+   --color-action-call-icon: #059669;
+   /* أيقونة الاتصال (Emerald 600) */
+   --color-action-call-bg: #ecfdf5;
+   /* خلفية زر الاتصال (Emerald 50) */
+   --color-action-call-hover-bg: #10b981;
+   /* خلفية الاتصال عند التمرير (Emerald 500) */
+
+   /* د) البريد الإلكتروني (Email Action) */
+   --color-action-email-icon: #7c3aed;
+   /* أيقونة البريد (Violet 600) */
+   --color-action-email-bg: #f5f3ff;
+   /* خلفية زر البريد (Violet 50) */
+   --color-action-email-hover-bg: #ede9fe;
+   /* خلفية عند التمرير (Violet 100) */
+
+   /* هـ) العنوان والموقع (Location / Address) */
+   --color-action-address-icon: #059669;
+   /* أيقونة العنوان (Emerald 600) */
+   --color-action-address-bg: #d1fae5;
+   /* خلفية أيقونة العنوان (Emerald 100) */
+
+   /* ==========================================================================
+     6. شارات تصنيف جهات الاتصال (Contact Group Badges)
+     لكل مجموعة: خلفية، نص، وحدود متناسقة
+     ========================================================================== */
+   /* عائلة (Family - Blue) */
+   --color-group-family-bg: #dbeafe;
+   --color-group-family-text: #1d4ed8;
+   --color-group-family-border: #bfdbfe;
+
+   /* أصدقاء (Friends - Green) */
+   --color-group-friends-bg: #dcfce7;
+   --color-group-friends-text: #15803d;
+   --color-group-friends-border: #bbf7d0;
+
+   /* عمل (Work - Purple) */
+   --color-group-work-bg: #f3e8ff;
+   --color-group-work-text: #7e22ce;
+   --color-group-work-border: #e9d5ff;
+
+   /* زملاء (Colleagues - Indigo) */
+   --color-group-colleagues-bg: #e0e7ff;
+   --color-group-colleagues-text: #4338ca;
+   --color-group-colleagues-border: #c7d2fe;
+
+   /* أعمال وتجارة (Business - Slate) */
+   --color-group-business-bg: #f1f5f9;
+   --color-group-business-text: #334155;
+   --color-group-business-border: #e2e8f0;
+
+   /* دراسة (School - Amber) */
+   --color-group-school-bg: #fef3c7;
+   --color-group-school-text: #b45309;
+   --color-group-school-border: #fde68a;
+
+   /* نادي رياضي (Gym - Orange) */
+   --color-group-gym-bg: #ffedd5;
+   --color-group-gym-text: #c2410c;
+   --color-group-gym-border: #fed7aa;
+
+   /* جيران (Neighbors - Teal) */
+   --color-group-neighbors-bg: #ccfbf1;
+   --color-group-neighbors-text: #0f766e;
+   --color-group-neighbors-border: #99f6e4;
+
+   /* أخرى (Other - Gray) */
+   --color-group-other-bg: #f3f4f6;
+   --color-group-other-text: #374151;
+   --color-group-other-border: #e5e7eb;
+
+   /* بدائل عشوائية للمجموعات الإضافية (Dynamic Fallbacks) */
+   --color-group-cyan-bg: #cffafe;
+   --color-group-cyan-text: #0e7490;
+   --color-group-cyan-border: #a5f3fc;
+
+   --color-group-rose-bg: #ffe4e6;
+   --color-group-rose-text: #be123c;
+   --color-group-rose-border: #fecdd3;
+
+   --color-group-lime-bg: #ecfccb;
+   --color-group-lime-text: #4d7c0f;
+   --color-group-lime-border: #d9f99d;
+
+   --color-group-fuchsia-bg: #fae8ff;
+   --color-group-fuchsia-text: #a21caf;
+   --color-group-fuchsia-border: #f5d0fe;
+
+   --color-group-sky-bg: #e0f2fe;
+   --color-group-sky-text: #0369a1;
+   --color-group-sky-border: #bae6fd;
+
+   --color-group-violet-bg: #ede9fe;
+   --color-group-violet-text: #6d28d9;
+   --color-group-violet-border: #ddd6fe;
+
+   /* ==========================================================================
+     7. تدرجات الألوان (Gradients)
+     ========================================================================== */
+   /* أ) تدرج الهوية والأزرار (Brand Action Gradients) */
+   --gradient-brand-button: linear-gradient(to right, #7c3aed, #4f46e5);
+   --gradient-brand-logo: linear-gradient(135deg, #7c3aed, #4f46e5);
+   --gradient-brand-avatar: linear-gradient(135deg, #8b5cf6, #4f46e5);
+
+   /* ب) تدرجات بطاقات الإحصائيات (Stats Cards) */
+   --gradient-stat-total: linear-gradient(135deg, #3b82f6, #2563eb);
+   /* الأزرق: الإجمالي */
+   --gradient-stat-favorite: linear-gradient(135deg, #fbbf24, #f97316);
+   /* البرتقالي: المفضلة */
+   --gradient-stat-emergency: linear-gradient(135deg, #f43f5e, #dc2626);
+   /* الوردي/الأحمر: الطوارئ */
+
+   /* ج) تدرجات ترويسة القوائم الجانبية (Sidebar Section Headers) */
+   --gradient-header-favorite: linear-gradient(to right, #fffbeb, #fff7ed);
+   --gradient-header-emergency: linear-gradient(to right, #fff1f2, #fef2f2);
+
+   /* د) تدرجات الصور الرمزية لجهات الاتصال (Contact Avatar Variations) */
+   --gradient-avatar-1: linear-gradient(135deg, #3b82f6, #2563eb);
+   /* Blue */
+   --gradient-avatar-2: linear-gradient(135deg, #8b5cf6, #7e22ce);
+   /* Violet to Purple */
+   --gradient-avatar-3: linear-gradient(135deg, #10b981, #0d9488);
+   /* Emerald to Teal */
+   --gradient-avatar-4: linear-gradient(135deg, #f43f5e, #db2777);
+   /* Rose to Pink */
+   --gradient-avatar-5: linear-gradient(135deg, #f59e0b, #ea580c);
+   /* Amber to Orange */
+   --gradient-avatar-6: linear-gradient(135deg, #06b6d4, #2563eb);
+   /* Cyan to Blue */
+   --gradient-avatar-7: linear-gradient(135deg, #6366f1, #7c3aed);
+   /* Indigo to Violet */
+   --gradient-avatar-8: linear-gradient(135deg, #d946ef, #db2777);
+   /* Fuchsia to Pink */
+   --gradient-avatar-fallback: linear-gradient(135deg, #60a5fa, #2563eb);
+   /* Blue Default */
+
+   /* هـ) التدرجات المخصصة الصريحة (Named Custom Gradients) */
+   --gradient-named-violet: linear-gradient(135deg, rgb(139, 92, 246), rgb(99, 102, 241));
+   --gradient-named-amber: linear-gradient(135deg, rgb(251, 191, 36), rgb(249, 115, 22));
+   --gradient-named-rose: linear-gradient(135deg, rgb(244, 63, 94), rgb(220, 38, 38));
+   --gradient-named-blue: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
+   --gradient-named-emerald: linear-gradient(135deg, rgb(16, 185, 129), rgb(5, 150, 105));
+
+   /* ==========================================================================
+     8. الظلال والتوهج اللوني (Shadows & Colored Glows)
+     ========================================================================== */
+   --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+   --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+   --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+   /* ظلال ملونة مع البدائل */
+   --shadow-glow-brand: 0 10px 15px -3px rgba(141, 84, 255, 0.25);
+   --shadow-glow-brand-hover: 0 10px 15px -3px rgba(141, 84, 255, 0.3);
+   --shadow-glow-blue: 0 10px 15px -3px rgba(48, 128, 255, 0.25);
+   --shadow-glow-amber: 0 10px 15px -3px rgba(249, 156, 0, 0.25);
+   --shadow-glow-rose: 0 10px 15px -3px rgba(255, 35, 87, 0.25);
 }
 
-/* الهوية البصرية */
-.logo-grad {
-    background-image: var(--logo-grad);
+
+/* ---- */
+
+/**
+ * ==============================================================================
+ * UTILITY CLASSES — ContactHub
+ * كلاسات جاهزة مبنية على متغيرات نظام التصميم (استخدمها مباشرة في HTML)
+ * ==============================================================================
+ */
+
+/* ================= 1. الهوية البصرية (Brand) ================= */
+.bg-brand {
+   background-color: var(--color-brand-primary);
 }
 
-/* فئات الأبعاد المعتمدة على وحدة المسافات */
-.w-2  { width: calc(2 * var(--spacing)); }
-.h-2  { height: calc(2 * var(--spacing)); }
-
-.w-10 { width: calc(10 * var(--spacing)); }
-.h-10 { height: calc(10 * var(--spacing)); }
-
-.w-12 { width: calc(12 * var(--spacing)); }
-.h-12 { height: calc(12 * var(--spacing)); }
-
-.w-14 { width: calc(14 * var(--spacing)); }
-.h-14 { height: calc(14 * var(--spacing)); }
-
-.w-16 { width: calc(16 * var(--spacing)); }
-.h-16 { height: calc(16 * var(--spacing)); }
-
-.h-800 {
-    height: 800px;
+.bg-brand-hover:hover {
+   background-color: var(--color-brand-primary-hover);
 }
 
-/* شريط التنقل العلوي */
-.navbar {
-    --bs-border-color: var(--orange-3);
+.bg-brand-light {
+   background-color: var(--color-brand-light);
 }
 
-.navbar-collapse {
-    --bs-border-color: var(--orange-2);
+.bg-brand-lightest {
+   background-color: var(--color-brand-lightest);
 }
 
-.navbar-nav {
-    --bs-nav-link-hover-color: var(--orange-dark);
+.text-brand {
+   color: var(--color-brand-primary);
 }
 
-/* تبويبات المحتوى والتنقل الداخلي */
-.content .nav-link {
-    --bs-nav-link-color: var(--bs-secondary-color, #6c757d);
+.text-brand-secondary {
+   color: var(--color-brand-secondary);
 }
 
-.content .nav-underline .nav-link.active,
-.content .nav-underline .nav-link:focus,
-.content .nav-underline .nav-link:hover {
-    --bs-nav-underline-link-active-color: var(--orange-dark);
-    color: var(--bs-nav-underline-link-active-color);
-    border-bottom-color: var(--orange-dark);
+.border-brand {
+   border-color: var(--color-brand-primary);
 }
 
-.recipe-nav-tabs .nav-link {
-    font-size: var(--tab-font-size);
+.ring-brand {
+   box-shadow: 0 0 0 3px var(--color-brand-focus-ring);
 }
 
-/* فئات الألوان المساعدة للنصوص والخلفيات */
-.bg-orange-subtle {
-    background-color: var(--orange-3);
+.ring-brand:focus {
+   box-shadow: 0 0 0 3px var(--color-brand-focus-ring);
 }
 
-.text-orange {
-    color: var(--orange-dark);
+/* ================= 2. الأسطح (Surfaces) ================= */
+.bg-page {
+   background-color: var(--color-surface-page);
 }
 
-.bg-pink-subtle {
-    background-color: var(--pink-subtle);
+.bg-card {
+   background-color: var(--color-surface-card);
 }
 
-.text-pink {
-    color: var(--pink-dark);
+.bg-card-muted {
+   background-color: var(--color-surface-card-muted);
 }
 
-/* تفاصيل الوصفة والمكونات والخطوات */
-.recipe-scroll {
-    height: var(--recipe-scroll-height);
+.bg-input {
+   background-color: var(--color-surface-input);
 }
 
-.bg-ingredients {
-    background: var(--ingredient-bg-gradient);
+.bg-input:hover {
+   background-color: var(--color-surface-input-hover);
 }
 
-.step-number {
-    background-color: var(--orange-dark);
+.bg-header {
+   background-color: var(--color-surface-header);
+   backdrop-filter: blur(12px);
 }
 
-.ingredient-number {
-    width: var(--ingredient-badge-size);
-    height: var(--ingredient-badge-size);
-    background-color: var(--orange-dark);
-    font-size: 12px;
+.bg-overlay {
+   background-color: var(--color-surface-overlay);
 }
 
-/* أزرار التفاعل والبطاقات */
-.recipe-btn {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ================= 3. النصوص (Text) ================= */
+.text-primary {
+   color: var(--color-text-primary);
 }
 
-.recipe-btn:hover {
-    transform: scale(var(--btn-hover-scale));
+.text-secondary {
+   color: var(--color-text-secondary);
 }
 
-.tip-card {
-    background-color: var(--tip-bg);
-    border-left-color: var(--tip-border) !important;
+.text-body {
+   color: var(--color-text-body);
 }
 
-/* صندوق تنبيه الوقت الإضافي */
-#time-warning.alert-custom {
-    background-color: var(--alert-red-bg);
-    border-left-color: var(--alert-red-border) !important;
+.text-muted {
+   color: var(--color-text-muted);
 }
 
-.text-alert-icon {
-    color: var(--alert-red-border);
+.text-placeholder::placeholder {
+   color: var(--color-text-placeholder);
 }
 
-.text-alert-title {
-    color: var(--alert-red-title);
+.text-inverse {
+   color: var(--color-text-inverse);
 }
 
-.text-alert-desc {
-    color: var(--alert-red-desc);
+/* ================= 4. الحدود (Borders) ================= */
+.border-subtle {
+   border-color: var(--color-border-subtle);
 }
 
-
-.recipe-image-side {
-  height: var(--recipe-img-mobile-height);
+.border-card {
+   border-color: var(--color-border-card);
 }
 
-@media (min-width: 992px) {
-  .recipe-image-side {
-    height: auto;
-  }
+.border-card-subtle {
+   border-color: var(--color-border-card-subtle);
 }
+
+.border-input {
+   border-color: var(--color-border-input);
+}
+
+.border-input:focus {
+   border-color: var(--color-border-focus);
+   outline: none;
+}
+
+.border-error {
+   border-color: var(--color-border-error);
+}
+
+/* ================= 5. المفضلة (Favorite) ================= */
+.text-favorite {
+   color: var(--color-favorite-icon);
+}
+
+.bg-favorite {
+   background-color: var(--color-favorite-bg);
+}
+
+.bg-favorite:hover {
+   background-color: var(--color-favorite-bg-hover);
+}
+
+.border-favorite {
+   border-color: var(--color-favorite-border);
+}
+
+/* ================= 6. الطوارئ والحذف (Emergency/Danger) ================= */
+.text-emergency {
+   color: var(--color-emergency-text);
+}
+
+.text-emergency-icon {
+   color: var(--color-emergency-icon);
+}
+
+.bg-emergency {
+   background-color: var(--color-emergency-bg);
+}
+
+.bg-emergency:hover {
+   background-color: var(--color-emergency-bg-hover);
+}
+
+.border-emergency {
+   border-color: var(--color-emergency-border);
+}
+
+.bg-delete {
+   background-color: var(--color-action-delete);
+}
+
+.bg-delete:hover {
+   background-color: var(--color-emergency-text);
+}
+
+/* ================= 7. الاتصال والبريد والعنوان (Actions) ================= */
+/* Call */
+.text-call {
+   color: var(--color-action-call-icon);
+}
+
+.bg-call {
+   background-color: var(--color-action-call-bg);
+}
+
+.bg-call:hover {
+   background-color: var(--color-action-call-hover-bg);
+}
+
+/* Email */
+.text-email {
+   color: var(--color-action-email-icon);
+}
+
+.bg-email {
+   background-color: var(--color-action-email-bg);
+}
+
+.bg-email:hover {
+   background-color: var(--color-action-email-hover-bg);
+}
+
+/* Address */
+.text-address {
+   color: var(--color-action-address-icon);
+}
+
+.bg-address {
+   background-color: var(--color-action-address-bg);
+}
+
+/* ================= 8. شارات المجموعات (Group Badges) ================= */
+/* مثال استخدام: <span class="badge-group badge-group--family">عائلة</span> */
+
+.badge-group {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.25rem;
+   padding: 0.25rem 0.75rem;
+   border-radius: 9999px;
+   font-size: 0.75rem;
+   font-weight: 600;
+   border: 1px solid transparent;
+}
+
+.badge-group--family {
+   background: var(--color-group-family-bg);
+   color: var(--color-group-family-text);
+   border-color: var(--color-group-family-border);
+}
+
+.badge-group--friends {
+   background: var(--color-group-friends-bg);
+   color: var(--color-group-friends-text);
+   border-color: var(--color-group-friends-border);
+}
+
+.badge-group--work {
+   background: var(--color-group-work-bg);
+   color: var(--color-group-work-text);
+   border-color: var(--color-group-work-border);
+}
+
+.badge-group--colleagues {
+   background: var(--color-group-colleagues-bg);
+   color: var(--color-group-colleagues-text);
+   border-color: var(--color-group-colleagues-border);
+}
+
+.badge-group--business {
+   background: var(--color-group-business-bg);
+   color: var(--color-group-business-text);
+   border-color: var(--color-group-business-border);
+}
+
+.badge-group--school {
+   background: var(--color-group-school-bg);
+   color: var(--color-group-school-text);
+   border-color: var(--color-group-school-border);
+}
+
+.badge-group--gym {
+   background: var(--color-group-gym-bg);
+   color: var(--color-group-gym-text);
+   border-color: var(--color-group-gym-border);
+}
+
+.badge-group--neighbors {
+   background: var(--color-group-neighbors-bg);
+   color: var(--color-group-neighbors-text);
+   border-color: var(--color-group-neighbors-border);
+}
+
+.badge-group--other {
+   background: var(--color-group-other-bg);
+   color: var(--color-group-other-text);
+   border-color: var(--color-group-other-border);
+}
+
+/* المجموعات الديناميكية (Fallbacks) */
+.badge-group--cyan {
+   background: var(--color-group-cyan-bg);
+   color: var(--color-group-cyan-text);
+   border-color: var(--color-group-cyan-border);
+}
+
+.badge-group--rose {
+   background: var(--color-group-rose-bg);
+   color: var(--color-group-rose-text);
+   border-color: var(--color-group-rose-border);
+}
+
+.badge-group--lime {
+   background: var(--color-group-lime-bg);
+   color: var(--color-group-lime-text);
+   border-color: var(--color-group-lime-border);
+}
+
+.badge-group--fuchsia {
+   background: var(--color-group-fuchsia-bg);
+   color: var(--color-group-fuchsia-text);
+   border-color: var(--color-group-fuchsia-border);
+}
+
+.badge-group--sky {
+   background: var(--color-group-sky-bg);
+   color: var(--color-group-sky-text);
+   border-color: var(--color-group-sky-border);
+}
+
+.badge-group--violet {
+   background: var(--color-group-violet-bg);
+   color: var(--color-group-violet-text);
+   border-color: var(--color-group-violet-border);
+}
+
+/* ================= 9. التدرجات (Gradients) ================= */
+.grad-brand-btn {
+   background-image: var(--gradient-brand-button);
+}
+
+.grad-brand-logo {
+   background-image: var(--gradient-brand-logo);
+}
+
+.grad-brand-avatar {
+   background-image: var(--gradient-brand-avatar);
+}
+
+.grad-stat-total {
+   background-image: var(--gradient-stat-total);
+}
+
+.grad-stat-favorite {
+   background-image: var(--gradient-stat-favorite);
+}
+
+.grad-stat-emergency {
+   background-image: var(--gradient-stat-emergency);
+}
+
+.grad-header-favorite {
+   background-image: var(--gradient-header-favorite);
+}
+
+.grad-header-emergency {
+   background-image: var(--gradient-header-emergency);
+}
+
+/* الأفاتارات */
+.grad-avatar-1 {
+   background-image: var(--gradient-avatar-1);
+}
+
+.grad-avatar-2 {
+   background-image: var(--gradient-avatar-2);
+}
+
+.grad-avatar-3 {
+   background-image: var(--gradient-avatar-3);
+}
+
+.grad-avatar-4 {
+   background-image: var(--gradient-avatar-4);
+}
+
+.grad-avatar-5 {
+   background-image: var(--gradient-avatar-5);
+}
+
+.grad-avatar-6 {
+   background-image: var(--gradient-avatar-6);
+}
+
+.grad-avatar-7 {
+   background-image: var(--gradient-avatar-7);
+}
+
+.grad-avatar-8 {
+   background-image: var(--gradient-avatar-8);
+}
+
+.grad-avatar-fallback {
+   background-image: var(--gradient-avatar-fallback);
+}
+
+/* تدرجات مسماة */
+.grad-violet {
+   background-image: var(--gradient-named-violet);
+}
+
+.grad-amber {
+   background-image: var(--gradient-named-amber);
+}
+
+.grad-rose {
+   background-image: var(--gradient-named-rose);
+}
+
+.grad-blue {
+   background-image: var(--gradient-named-blue);
+}
+
+.grad-emerald {
+   background-image: var(--gradient-named-emerald);
+}
+
+/* ================= 10. الظلال (Shadows) ================= */
+.shadow-subtle {box-shadow: var(--shadow-subtle);}
+.shadow-card {box-shadow: var(--shadow-card);}
+.shadow-card-hover {
+   box-shadow: var(--shadow-card);
+   transition: box-shadow 0.2s ease;}
+.shadow-card-hover:hover {box-shadow: var(--shadow-card-hover);}
+.shadow-modal {box-shadow: var(--shadow-modal);}
+.shadow-glow-brand {box-shadow: var(--shadow-glow-brand);}
+.shadow-glow-brand:hover {box-shadow: var(--shadow-glow-brand-hover);}
+.shadow-glow-blue {box-shadow: var(--shadow-glow-blue);}
+.shadow-glow-amber {box-shadow: var(--shadow-glow-amber);}
+.shadow-glow-rose {box-shadow: var(--shadow-glow-rose);}
+
+
+:root {
+   --spacing: 4px;
+
+}
+
+.w-10 {width: calc(10*var(--spacing));}
+.h-10 {height: calc(10*var(--spacing));}
+.w-11 {width: calc(11*var(--spacing));}
+.h-11 {height: calc(11*var(--spacing));}
+.w-2 {width: calc(2*var(--spacing));}
+.h-2 {height: calc(2*var(--spacing));}
+.w-14 {width: calc(14*var(--spacing));}
+.h-14 {height: calc(14*var(--spacing));}
+.w-16 {width: calc(16*var(--spacing));}
+.h-16 {height: calc(16*var(--spacing));}
+
+/* Margin Top */
+.m-t-2 { margin-top: calc(2 * var(--spacing)); }
+.m-t-10 { margin-top: calc(10 * var(--spacing)); }
+.m-t-11 { margin-top: calc(11 * var(--spacing)); }
+.m-t-14 { margin-top: calc(14 * var(--spacing)); }
+.m-t-16 { margin-top: calc(16 * var(--spacing)); }
+.m-t-25 { margin-top: calc(25 * var(--spacing)); }
+
+/* Margin Bottom */
+.m-b-2 { margin-bottom: calc(2 * var(--spacing)); }
+.m-b-10 { margin-bottom: calc(10 * var(--spacing)); }
+.m-b-11 { margin-bottom: calc(11 * var(--spacing)); }
+.m-b-14 { margin-bottom: calc(14 * var(--spacing)); }
+.m-b-16 { margin-bottom: calc(16 * var(--spacing)); }
+.m-b-25 { margin-bottom: calc(25 * var(--spacing)); }
