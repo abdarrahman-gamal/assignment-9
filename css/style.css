@@ -368,7 +368,7 @@
 
 /* ================= 4. الحدود (Borders) ================= */
 .border-subtle {
-   border-color: var(--color-border-subtle);
+   border-color: var(--color-border-subtle) !important;
 }
 
 .border-card {
@@ -671,18 +671,46 @@
 }
 
 /* ================= 10. الظلال (Shadows) ================= */
-.shadow-subtle {box-shadow: var(--shadow-subtle);}
-.shadow-card {box-shadow: var(--shadow-card);}
+.shadow-subtle {
+   box-shadow: var(--shadow-subtle);
+}
+
+.shadow-card {
+   box-shadow: var(--shadow-card);
+}
+
 .shadow-card-hover {
    box-shadow: var(--shadow-card);
-   transition: box-shadow 0.2s ease;}
-.shadow-card-hover:hover {box-shadow: var(--shadow-card-hover);}
-.shadow-modal {box-shadow: var(--shadow-modal);}
-.shadow-glow-brand {box-shadow: var(--shadow-glow-brand);}
-.shadow-glow-brand:hover {box-shadow: var(--shadow-glow-brand-hover);}
-.shadow-glow-blue {box-shadow: var(--shadow-glow-blue);}
-.shadow-glow-amber {box-shadow: var(--shadow-glow-amber);}
-.shadow-glow-rose {box-shadow: var(--shadow-glow-rose);}
+   transition: box-shadow 0.2s ease;
+}
+
+.shadow-card-hover:hover {
+   box-shadow: var(--shadow-card-hover);
+}
+
+.shadow-modal {
+   box-shadow: var(--shadow-modal);
+}
+
+.shadow-glow-brand {
+   box-shadow: var(--shadow-glow-brand);
+}
+
+.shadow-glow-brand:hover {
+   box-shadow: var(--shadow-glow-brand-hover);
+}
+
+.shadow-glow-blue {
+   box-shadow: var(--shadow-glow-blue);
+}
+
+.shadow-glow-amber {
+   box-shadow: var(--shadow-glow-amber);
+}
+
+.shadow-glow-rose {
+   box-shadow: var(--shadow-glow-rose);
+}
 
 
 :root {
@@ -690,29 +718,431 @@
 
 }
 
-.w-10 {width: calc(10*var(--spacing));}
-.h-10 {height: calc(10*var(--spacing));}
-.w-11 {width: calc(11*var(--spacing));}
-.h-11 {height: calc(11*var(--spacing));}
-.w-2 {width: calc(2*var(--spacing));}
-.h-2 {height: calc(2*var(--spacing));}
-.w-14 {width: calc(14*var(--spacing));}
-.h-14 {height: calc(14*var(--spacing));}
-.w-16 {width: calc(16*var(--spacing));}
-.h-16 {height: calc(16*var(--spacing));}
+.w-10 {
+   width: calc(10*var(--spacing));
+}
+
+.h-10 {
+   height: calc(10*var(--spacing));
+}
+
+.w-11 {
+   width: calc(11*var(--spacing));
+}
+
+.h-11 {
+   height: calc(11*var(--spacing));
+}
+
+.w-2 {
+   width: calc(2*var(--spacing));
+}
+
+.h-2 {
+   height: calc(2*var(--spacing));
+}
+
+.w-14 {
+   width: calc(14*var(--spacing));
+}
+
+.h-14 {
+   height: calc(14*var(--spacing));
+}
+
+.w-16 {
+   width: calc(16*var(--spacing));
+}
+
+.h-16 {
+   height: calc(16*var(--spacing));
+}
 
 /* Margin Top */
-.m-t-2 { margin-top: calc(2 * var(--spacing)); }
-.m-t-10 { margin-top: calc(10 * var(--spacing)); }
-.m-t-11 { margin-top: calc(11 * var(--spacing)); }
-.m-t-14 { margin-top: calc(14 * var(--spacing)); }
-.m-t-16 { margin-top: calc(16 * var(--spacing)); }
-.m-t-25 { margin-top: calc(25 * var(--spacing)); }
+.m-t-2 {
+   margin-top: calc(2 * var(--spacing));
+}
+
+.m-t-10 {
+   margin-top: calc(10 * var(--spacing));
+}
+
+.m-t-11 {
+   margin-top: calc(11 * var(--spacing));
+}
+
+.m-t-14 {
+   margin-top: calc(14 * var(--spacing));
+}
+
+.m-t-16 {
+   margin-top: calc(16 * var(--spacing));
+}
+
+.m-t-25 {
+   margin-top: calc(25 * var(--spacing));
+}
 
 /* Margin Bottom */
-.m-b-2 { margin-bottom: calc(2 * var(--spacing)); }
-.m-b-10 { margin-bottom: calc(10 * var(--spacing)); }
-.m-b-11 { margin-bottom: calc(11 * var(--spacing)); }
-.m-b-14 { margin-bottom: calc(14 * var(--spacing)); }
-.m-b-16 { margin-bottom: calc(16 * var(--spacing)); }
-.m-b-25 { margin-bottom: calc(25 * var(--spacing)); }
+.m-b-2 {
+   margin-bottom: calc(2 * var(--spacing));
+}
+
+.m-b-10 {
+   margin-bottom: calc(10 * var(--spacing));
+}
+
+.m-b-11 {
+   margin-bottom: calc(11 * var(--spacing));
+}
+
+.m-b-14 {
+   margin-bottom: calc(14 * var(--spacing));
+}
+
+.m-b-16 {
+   margin-bottom: calc(16 * var(--spacing));
+}
+
+.m-b-25 {
+   margin-bottom: calc(25 * var(--spacing));
+}
+
+/* مكملات لأبعاد الأيقونات الصغيرة */
+.w-6 {
+   width: calc(6 * var(--spacing));
+}
+
+.h-6 {
+   height: calc(6 * var(--spacing));
+}
+
+.w-8 {
+   width: calc(8 * var(--spacing));
+}
+
+.h-8 {
+   height: calc(8 * var(--spacing));
+}
+
+/* لضبط أيقونات الأزرار عند التحويم */
+.btn:focus,
+.btn:active {
+   box-shadow: none !important;
+}
+
+
+
+
+/* =========================================================
+   ContactHub - Missing Bootstrap Companion Utilities
+========================================================= */
+
+:root {
+   --spacing: 4px;
+}
+
+
+/* ---------- Width / Height ---------- */
+
+.w-5 {
+   width: calc(5 * var(--spacing));
+}
+
+.h-5 {
+   height: calc(5 * var(--spacing));
+}
+
+.w-7 {
+   width: calc(7 * var(--spacing));
+}
+
+.h-7 {
+   height: calc(7 * var(--spacing));
+}
+
+.w-9 {
+   width: calc(9 * var(--spacing));
+}
+
+.h-9 {
+   height: calc(9 * var(--spacing));
+}
+
+.w-12 {
+   width: calc(12 * var(--spacing));
+}
+
+.h-12 {
+   height: calc(12 * var(--spacing));
+}
+
+.w-24 {
+   width: calc(24 * var(--spacing));
+}
+
+.h-24 {
+   height: calc(24 * var(--spacing));
+}
+
+
+/* ---------- Small Font Sizes ---------- */
+
+.fs-8 {
+   font-size: 8px !important;
+}
+
+.fs-9 {
+   font-size: 9px !important;
+}
+
+.fs-10 {
+   font-size: 10px !important;
+}
+
+.fs-11 {
+   font-size: 11px !important;
+}
+
+.fs-12 {
+   font-size: 12px !important;
+}
+
+.fs-13 {
+   font-size: 13px !important;
+}
+
+
+/* ---------- Flex truncation ---------- */
+
+.min-w-0 {
+   min-width: 0 !important;
+}
+
+
+/* ---------- Textarea ---------- */
+
+.resize-none {
+   resize: none;
+}
+
+
+/* ---------- Sidebar ---------- */
+
+.top-sidebar {
+   top: 6rem;
+}
+
+
+/* ---------- Modal ---------- */
+
+.z-modal {
+   z-index: 1055;
+}
+
+.contact-modal-dialog {
+   max-width: 500px;
+   max-height: 90vh;
+}
+
+
+/* ---------- Scroll Areas ---------- */
+
+.scroll-list-lg {
+   max-height: 320px;
+   overflow-y: auto;
+}
+
+.scroll-list-mobile {
+   max-height: 280px;
+   overflow-y: auto;
+}
+
+
+/* ---------- Avatar Corner Badges ---------- */
+
+.badge-emergency {
+   bottom: -2px;
+   right: -2px;
+}
+
+.badge-favorite {
+   top: -2px;
+   right: -2px;
+}
+
+
+/* ---------- Contact Group Colors ---------- */
+
+.bg-group-family-bg {
+   background-color: var(--color-group-family-bg);
+}
+
+.text-group-family-text {
+   color: var(--color-group-family-text);
+}
+
+
+/* ---------- Background Glow ---------- */
+
+.bg-glow-family {
+   top: -10rem;
+   right: -10rem;
+   width: 22rem;
+   height: 22rem;
+   background-color: var(--color-group-family-bg);
+   filter: blur(70px);
+   opacity: 0.5;
+}
+
+.bg-glow-brand {
+   top: 45%;
+   left: -10rem;
+   width: 25rem;
+   height: 25rem;
+   background-color: var(--color-brand-light);
+   filter: blur(80px);
+   opacity: 0.4;
+}
+
+.bg-glow-call {
+   bottom: -10rem;
+   right: 30%;
+   width: 22rem;
+   height: 22rem;
+   background-color: var(--color-action-call-bg);
+   filter: blur(70px);
+   opacity: 0.4;
+}
+
+
+/* ---------- Typography ---------- */
+
+body {
+   font-family: "Inter", sans-serif;
+}
+
+
+/* ---------- Form Focus ---------- */
+
+.form-control:focus,
+.form-select:focus {
+   border-color: var(--color-border-focus);
+   box-shadow: 0 0 0 0.25rem var(--color-brand-focus-ring);
+   background-color: var(--color-surface-card);
+}
+
+
+/* ---------- Buttons ---------- */
+
+.bg-call,
+.bg-email,
+.bg-favorite,
+.bg-emergency,
+.bg-input {
+   transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+}
+
+.bg-call:hover {
+   background-color: var(--color-action-call-hover-bg);
+   color: var(--color-text-inverse);
+}
+
+.bg-email:hover {
+   background-color: var(--color-action-email-hover-bg);
+}
+
+.bg-favorite:hover {
+   background-color: var(--color-favorite-bg-hover);
+}
+
+.bg-emergency:hover {
+   background-color: var(--color-emergency-bg-hover);
+}
+
+.bg-input:hover {
+   background-color: var(--color-surface-input-hover);
+}
+
+.bg-delete:hover {
+   background-color: var(--color-emergency-text);
+}
+
+
+/* ---------- Cards ---------- */
+
+.shadow-card-hover {
+   box-shadow: var(--shadow-card);
+   transition: box-shadow 0.2s ease;
+}
+
+.shadow-card-hover:hover {
+   box-shadow: var(--shadow-card-hover);
+}
+
+
+/* ---------- Brand Hover ---------- */
+
+.bg-brand:hover {
+   background-color: var(--color-brand-primary-hover);
+}
+
+.shadow-glow-brand {
+   box-shadow: var(--shadow-glow-brand);
+}
+
+.shadow-glow-brand:hover {
+   box-shadow: var(--shadow-glow-brand-hover);
+}
+
+
+/* ---------- Focus Ring ---------- */
+
+.ring-brand:focus {
+   box-shadow: 0 0 0 3px var(--color-brand-focus-ring);
+}
+
+
+/* ---------- Input Border Focus ---------- */
+
+.border-input:focus {
+   border-color: var(--color-border-focus);
+   outline: none;
+}
+
+
+/* استخراج التصميمات الخاصة بال popup والألوان والمسافات بال AI */
+/* =========================================================
+   SweetAlert Contact Modal
+========================================================= */
+
+.mh-90vh {
+   max-height: 90vh !important;
+}
+
+.min-h-0 {
+   min-height: 0 !important;
+}
+
+
+/* Blur خلف SweetAlert */
+
+.swal-backdrop-blur {
+   backdrop-filter: blur(6px);
+   -webkit-backdrop-filter: blur(6px);
+}
+
+
+/* أبعاد غير موجودة في Bootstrap */
+
+.w-20 {
+   width: calc(20 * var(--spacing));
+}
+
+.h-20 {
+   height: calc(20 * var(--spacing));
+}
+
