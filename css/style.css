@@ -1115,34 +1115,28 @@ body {
 
 
 /* استخراج التصميمات الخاصة بال popup والألوان والمسافات بال AI */
+
 /* =========================================================
-   SweetAlert Contact Modal
+   Contact Modal
 ========================================================= */
 
-.mh-90vh {
-   max-height: 90vh !important;
-}
-
-.min-h-0 {
-   min-height: 0 !important;
-}
-
-
-/* Blur خلف SweetAlert */
-
-.swal-backdrop-blur {
-   backdrop-filter: blur(6px);
-   -webkit-backdrop-filter: blur(6px);
-}
-
-
-/* أبعاد غير موجودة في Bootstrap */
-
 .w-20 {
-   width: calc(20 * var(--spacing));
+    width: calc(20 * var(--spacing));
 }
 
 .h-20 {
-   height: calc(20 * var(--spacing));
+    height: calc(20 * var(--spacing));
 }
 
+.contact-modal-dialog {
+    max-width: 500px;
+    max-height: 90vh;
+}
+
+.contact-form {
+    max-height: calc(90vh - 65px);
+}
+
+.modal-backdrop-blur {
+    backdrop-filter: blur(6px);
+}
