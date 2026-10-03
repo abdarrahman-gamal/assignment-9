@@ -1,820 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ContactHub - Smart Contact Manager</title>
 
-    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="css/all.min.css">
-
-    <!-- Custom Design System -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-page min-vh-100 position-relative">
 
-    <!-- =========================================================
-         Background Glow
-    ========================================================== -->
+    <!-- Decorative Glow Circles -->
     <div class="position-fixed top-0 start-0 w-100 h-100 overflow-hidden pe-none z-n1">
-
         <div class="position-absolute rounded-circle bg-glow-family"></div>
         <div class="position-absolute rounded-circle bg-glow-brand"></div>
         <div class="position-absolute rounded-circle bg-glow-call"></div>
-
     </div>
 
-
-    <!-- =========================================================
-         Header
-    ========================================================== -->
+    <!-- Main Navigation Bar -->
     <header id="header" class="bg-header border-bottom border-card-subtle sticky-top z-3 py-2 py-sm-3">
-
         <div class="container-xl">
-
             <div class="d-flex align-items-center justify-content-between">
-
-                <!-- Logo -->
+                
                 <div class="d-flex align-items-center gap-3">
-
-                    <div
-                        class="grad-brand-logo text-inverse rounded-4 w-11 h-11 d-flex align-items-center justify-content-center shadow-glow-brand flex-shrink-0">
-
+                    <div class="grad-brand-logo text-inverse rounded-4 w-11 h-11 d-flex align-items-center justify-content-center shadow-glow-brand flex-shrink-0">
                         <i class="fa-solid fa-address-book fs-5"></i>
-
                     </div>
-
                     <div>
-
-                        <h1 class="fs-4 fw-bold lh-1 mb-0">
-                            Contact<span class="text-brand">Hub</span>
-                        </h1>
-
-                        <p class="text-muted small mb-0 fw-medium fs-11 d-none d-sm-block">
-                            Smart Contact Manager
-                        </p>
-
+                        <h1 class="fs-4 fw-bold lh-1 mb-0">Contact<span class="text-brand">Hub</span></h1>
+                        <p class="text-muted small mb-0 fw-medium fs-11 d-none d-sm-block">Smart Contact Manager</p>
                     </div>
-
                 </div>
 
-
-                <!-- Actions -->
                 <div class="d-flex align-items-center gap-2 gap-sm-3">
-
-                    <button
-                        onclick="openAddContactModal()"
-                        id="addContactBtn"
-                        type="button"
+                    <button type="button" id="addContactBtn" onclick="openAddContactModal()"
                         class="btn grad-brand-btn text-inverse rounded-4 px-3 px-sm-4 py-2 fw-semibold shadow-glow-brand d-inline-flex align-items-center gap-2 border-0">
-
                         <i class="fa-solid fa-plus fs-6"></i>
-
-                        <span class="d-none d-sm-inline">
-                            Add Contact
-                        </span>
-
-                        <span class="d-sm-none">
-                            Add
-                        </span>
-
+                        <span class="d-none d-sm-inline">Add Contact</span>
+                        <span class="d-sm-none">Add</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="btn bg-card text-muted rounded-4 w-10 h-10 d-none d-sm-flex align-items-center justify-content-center border border-card shadow-subtle p-0">
-
+                    <button type="button" class="btn bg-card text-muted rounded-4 w-10 h-10 d-none d-sm-flex align-items-center justify-content-center border border-card shadow-subtle p-0" aria-label="Notifications">
                         <i class="fa-solid fa-bell"></i>
-
                     </button>
 
-                    <button
-                        type="button"
-                        class="btn bg-card text-muted rounded-4 w-10 h-10 d-none d-sm-flex align-items-center justify-content-center border border-card shadow-subtle p-0">
-
+                    <button type="button" class="btn bg-card text-muted rounded-4 w-10 h-10 d-none d-sm-flex align-items-center justify-content-center border border-card shadow-subtle p-0" aria-label="Settings">
                         <i class="fa-solid fa-gear"></i>
-
                     </button>
 
                     <div class="w-10 h-10 rounded-4 overflow-hidden border border-card shadow-subtle flex-shrink-0">
-
-                        <img
-                            src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg"
-                            alt="Profile"
-                            class="w-100 h-100 object-fit-cover">
-
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg" alt="User Profile" class="w-100 h-100 object-fit-cover">
                     </div>
-
                 </div>
 
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- =========================================================
-         Main
-    ========================================================== -->
+    <!-- App Layout -->
     <main id="main-content" class="container-xl py-4 py-sm-5">
 
-        <!-- =====================================================
-             Statistics
-        ====================================================== -->
+        <!-- Top Statistics -->
         <section id="quick-stats" class="mb-4 mb-sm-5">
-
             <div class="row g-3 row-cols-2 row-cols-md-3">
-
-                <!-- Total -->
                 <div class="col">
-
-                    <div
-                        class="bg-card p-3 p-sm-4 rounded-4 border border-card shadow-subtle d-flex align-items-center gap-3">
-
-                        <div
-                            class="grad-stat-total text-inverse rounded-4 w-12 h-12 d-flex align-items-center justify-content-center shadow-glow-blue flex-shrink-0">
-
+                    <div class="bg-card p-3 p-sm-4 rounded-4 border border-card shadow-subtle d-flex align-items-center gap-3">
+                        <div class="grad-stat-total text-inverse rounded-4 w-12 h-12 d-flex align-items-center justify-content-center shadow-glow-blue flex-shrink-0">
                             <i class="fa-solid fa-users fs-5"></i>
-
                         </div>
-
                         <div>
-
-                            <p class="text-muted fw-bold text-uppercase mb-0 fs-11">
-                                Total
-                            </p>
-
-                            <p id="totalCount" class="fs-3 fw-bolder text-black lh-1 mb-0">
-                                0
-                            </p>
-
+                            <p class="text-muted fw-bold text-uppercase mb-0 fs-11">Total</p>
+                            <p id="totalCount" class="fs-3 fw-bolder text-black lh-1 mb-0">0</p>
                         </div>
-
                     </div>
-
                 </div>
 
-
-                <!-- Favorites -->
                 <div class="col">
-
-                    <div
-                        class="bg-card p-3 p-sm-4 rounded-4 border border-card shadow-subtle d-flex align-items-center gap-3">
-
-                        <div
-                            class="grad-stat-favorite text-inverse rounded-4 w-12 h-12 d-flex align-items-center justify-content-center shadow-glow-amber flex-shrink-0">
-
+                    <div class="bg-card p-3 p-sm-4 rounded-4 border border-card shadow-subtle d-flex align-items-center gap-3">
+                        <div class="grad-stat-favorite text-inverse rounded-4 w-12 h-12 d-flex align-items-center justify-content-center shadow-glow-amber flex-shrink-0">
                             <i class="fa-solid fa-star fs-5"></i>
-
                         </div>
-
                         <div>
-
-                            <p class="text-muted fw-bold text-uppercase mb-0 fs-11">
-                                Favorites
-                            </p>
-
-                            <p id="favoriteCount" class="fs-3 fw-bolder text-black lh-1 mb-0">
-                                0
-                            </p>
-
+                            <p class="text-muted fw-bold text-uppercase mb-0 fs-11">Favorites</p>
+                            <p id="favoriteCount" class="fs-3 fw-bolder text-black lh-1 mb-0">0</p>
                         </div>
-
                     </div>
-
                 </div>
 
-
-                <!-- Emergency -->
-                <div class="col">
-
-                    <div
-                        class="bg-card p-3 p-sm-4 rounded-4 border border-card shadow-subtle d-flex align-items-center gap-3">
-
-                        <div
-                            class="grad-stat-emergency text-inverse rounded-4 w-12 h-12 d-flex align-items-center justify-content-center shadow-glow-rose flex-shrink-0">
-
+                <div class="col col-12 col-md">
+                    <div class="bg-card p-3 p-sm-4 rounded-4 border border-card shadow-subtle d-flex align-items-center gap-3">
+                        <div class="grad-stat-emergency text-inverse rounded-4 w-12 h-12 d-flex align-items-center justify-content-center shadow-glow-rose flex-shrink-0">
                             <i class="fa-solid fa-heart-pulse fs-5"></i>
-
                         </div>
-
                         <div>
-
-                            <p class="text-muted fw-bold text-uppercase mb-0 fs-11">
-                                Emergency
-                            </p>
-
-                            <p id="emergencyCount" class="fs-3 fw-bolder text-black lh-1 mb-0">
-                                0
-                            </p>
-
+                            <p class="text-muted fw-bold text-uppercase mb-0 fs-11">Emergency</p>
+                            <p id="emergencyCount" class="fs-3 fw-bolder text-black lh-1 mb-0">0</p>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =====================================================
-             Main Content Grid
-        ====================================================== -->
+        <!-- Main Workspace -->
         <div class="row g-4">
-
-            <!-- =================================================
-                 Contacts
-            ================================================== -->
+            
+            <!-- Primary Contacts List -->
             <div class="col-12 col-xl-8">
-
                 <section id="contacts-header" class="mb-4">
-
-                    <div
-                        class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
-
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
                         <div>
-
-                            <h2 class="fs-3 fw-bold mb-1">
-                                All Contacts
-                            </h2>
-
-                            <p id="contactsCountText" class="text-muted small mb-0">
-                                Manage and organize your 0 contacts
-                            </p>
-
+                            <h2 class="fs-3 fw-bold mb-1">All Contacts</h2>
+                            <p id="contactsCountText" class="text-muted small mb-0">Manage and organize your 0 contacts</p>
                         </div>
-
                     </div>
 
-
-                    <!-- Search -->
+                    <!-- Search Input -->
                     <div class="position-relative">
-
-                        <i
-                            class="fa-solid fa-magnifying-glass text-placeholder position-absolute top-50 translate-middle-y ms-3">
-                        </i>
-
-                        <input
-                            id="searchInput"
-                            type="text"
-                            placeholder="Search by name, phone, or email..."
-                            class="form-control rounded-4 py-3 ps-5 border-card bg-card text-body text-placeholder shadow-subtle">
-
+                        <i class="fa-solid fa-magnifying-glass text-placeholder position-absolute top-50 translate-middle-y ms-3"></i>
+                        <input type="text" id="searchInput" placeholder="Search by name, phone, or email..."
+                            class="form-control rounded-4 py-3 ps-5 border-card bg-card text-body shadow-subtle">
                     </div>
-
                 </section>
 
-
-                <!-- Contacts -->
                 <section id="contacts-grid">
-
-                    <div
-                        id="contactsList"
-                        class="row g-3 row-cols-1 row-cols-sm-2">
-                    </div>
-
+                    <div id="contactsList" class="row g-3 row-cols-1 row-cols-sm-2"></div>
                 </section>
-
             </div>
 
-
-            <!-- =================================================
-                 Desktop Sidebar
-            ================================================== -->
-            <aside class="col-xl-4 d-none d-xl-block">
-
-                <div class="position-sticky top-sidebar d-flex flex-column gap-4">
-
-
-                    <!-- Favorites -->
-                    <section
-                        id="favorites-section"
-                        class="bg-card rounded-4 border border-card shadow-subtle overflow-hidden">
-
-                        <div
-                            class="grad-header-favorite px-4 py-3 border-bottom border-subtle d-flex align-items-center gap-3">
-
-                            <div
-                                class="grad-stat-favorite text-inverse rounded-3 w-9 h-9 d-flex align-items-center justify-content-center shadow-glow-amber flex-shrink-0">
-
+            <!-- Side Panels -->
+            <aside class="col-12 col-xl-4">
+                <div class="d-flex flex-column gap-4">
+                    
+                    <!-- Quick Favorites -->
+                    <section id="favorites-section" class="bg-card rounded-4 border border-card shadow-subtle overflow-hidden">
+                        <div class="grad-header-favorite px-4 py-3 border-bottom border-subtle d-flex align-items-center gap-3">
+                            <div class="grad-stat-favorite text-inverse rounded-3 w-9 h-9 d-flex align-items-center justify-content-center shadow-glow-amber flex-shrink-0">
                                 <i class="fa-solid fa-star fs-6"></i>
-
                             </div>
-
                             <div>
-
-                                <h2 class="fs-6 fw-semibold text-black mb-0">
-                                    Favorites
-                                </h2>
-
-                                <p class="text-muted mb-0 fs-11">
-                                    Quick access to starred contacts
-                                </p>
-
+                                <h2 class="fs-6 fw-semibold text-black mb-0">Favorites</h2>
+                                <p class="text-muted mb-0 fs-11">Quick access to starred contacts</p>
                             </div>
-
                         </div>
-
-                        <div
-                            id="favoritesList"
-                            class="p-3 d-flex flex-column gap-2 scroll-list-lg">
-                        </div>
-
+                        <div id="favoritesList" class="p-3 d-flex flex-column gap-2 scroll-list-lg"></div>
                     </section>
 
-
-                    <!-- Emergency -->
-                    <section
-                        id="emergency-contacts"
-                        class="bg-card rounded-4 border border-card shadow-subtle overflow-hidden">
-
-                        <div
-                            class="grad-header-emergency px-4 py-3 border-bottom border-subtle d-flex align-items-center gap-3">
-
-                            <div
-                                class="grad-stat-emergency text-inverse rounded-3 w-9 h-9 d-flex align-items-center justify-content-center shadow-glow-rose flex-shrink-0">
-
+                    <!-- Emergency Contacts -->
+                    <section id="emergency-contacts" class="bg-card rounded-4 border border-card shadow-subtle overflow-hidden">
+                        <div class="grad-header-emergency px-4 py-3 border-bottom border-subtle d-flex align-items-center gap-3">
+                            <div class="grad-stat-emergency text-inverse rounded-3 w-9 h-9 d-flex align-items-center justify-content-center shadow-glow-rose flex-shrink-0">
                                 <i class="fa-solid fa-heart-pulse fs-6"></i>
-
                             </div>
-
                             <div>
-
-                                <h2 class="fs-6 fw-semibold text-black mb-0">
-                                    Emergency
-                                </h2>
-
-                                <p class="text-muted mb-0 fs-11">
-                                    Important contacts for urgent calls
-                                </p>
-
+                                <h2 class="fs-6 fw-semibold text-black mb-0">Emergency</h2>
+                                <p class="text-muted mb-0 fs-11">Important contacts for urgent calls</p>
                             </div>
-
                         </div>
-
-                        <div
-                            id="emergencyList"
-                            class="p-3 d-flex flex-column gap-2 scroll-list-lg">
-                        </div>
-
+                        <div id="emergencyList" class="p-3 d-flex flex-column gap-2 scroll-list-lg"></div>
                     </section>
 
                 </div>
-
             </aside>
 
         </div>
-
-
-        <!-- =====================================================
-             Mobile / Tablet Sections
-        ====================================================== -->
-        <div class="d-flex d-xl-none flex-column gap-4 mt-5">
-
-
-            <!-- Mobile Favorites -->
-            <section
-                id="favorites-section-mobile"
-                class="bg-card rounded-4 border border-card shadow-subtle overflow-hidden">
-
-                <div
-                    class="grad-header-favorite px-4 py-3 border-bottom border-subtle d-flex align-items-center gap-3">
-
-                    <div
-                        class="grad-stat-favorite text-inverse rounded-3 w-8 h-8 d-flex align-items-center justify-content-center shadow-glow-amber flex-shrink-0">
-
-                        <i class="fa-solid fa-star fs-11"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h2 class="fs-6 fw-semibold text-black mb-0">
-                            Favorites
-                        </h2>
-
-                        <p class="text-muted mb-0 fs-10">
-                            Quick access
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div
-                    id="favoritesListMobile"
-                    class="p-3 row g-2 row-cols-1 row-cols-sm-2 scroll-list-mobile">
-                </div>
-
-            </section>
-
-
-            <!-- Mobile Emergency -->
-            <section
-                id="emergency-contacts-mobile"
-                class="bg-card rounded-4 border border-card shadow-subtle overflow-hidden">
-
-                <div
-                    class="grad-header-emergency px-4 py-3 border-bottom border-subtle d-flex align-items-center gap-3">
-
-                    <div
-                        class="grad-stat-emergency text-inverse rounded-3 w-8 h-8 d-flex align-items-center justify-content-center shadow-glow-rose flex-shrink-0">
-
-                        <i class="fa-solid fa-heart-pulse fs-11"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h2 class="fs-6 fw-semibold text-black mb-0">
-                            Emergency
-                        </h2>
-
-                        <p class="text-muted mb-0 fs-10">
-                            Urgent contacts
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div
-                    id="emergencyListMobile"
-                    class="p-3 row g-2 row-cols-1 row-cols-sm-2 scroll-list-mobile">
-                </div>
-
-            </section>
-
-        </div>
-
     </main>
 
+    <!-- Modal Form (Add / Edit) -->
+    <div id="contactModal" class="position-fixed top-0 start-0 w-100 h-100 z-modal d-none align-items-center justify-content-center p-3"
+        role="dialog" aria-modal="true" aria-labelledby="contactModalLabel">
+        
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-overlay modal-backdrop-blur"></div>
 
-    <!-- =========================================================
-         Add Contact Modal
-    ========================================================== -->
-    <div
-        id="contactModal"
-        class="position-fixed top-0 start-0 w-100 h-100 z-modal d-none align-items-center justify-content-center p-3">
-
-        <!-- Backdrop -->
-        <div
-            class="position-absolute top-0 start-0 w-100 h-100 bg-overlay modal-backdrop-blur">
-        </div>
-
-
-        <!-- Modal Content -->
         <div class="position-relative z-1 bg-card rounded-4 shadow-modal w-100 contact-modal-dialog">
-
-
-            <!-- Header -->
-            <div
-                class="d-flex align-items-center justify-content-between border-bottom border-subtle px-4 py-3">
-
-                <h2
-                    id="contactModalLabel"
-                    class="text-black fs-5 fw-bold m-0">
-
-                    Add New Contact
-
-                </h2>
-
-
-                <button
-                    type="button"
-                    id="closeModalBtn"
-                    class="btn-close"
-                    aria-label="Close">
-                </button>
-
+            
+            <div class="d-flex align-items-center justify-content-between border-bottom border-subtle px-4 py-3">
+                <h2 id="contactModalLabel" class="text-black fs-5 fw-bold m-0">Add New Contact</h2>
+                <button type="button" id="closeModalBtn" class="btn-close" aria-label="Close"></button>
             </div>
 
-
-            <!-- Form -->
             <form id="contactForm" class="overflow-y-auto contact-form">
-
                 <div class="p-4">
 
-                    <!-- Avatar -->
-                    <div
-                        class="d-flex flex-column align-items-center mb-4">
-
-                        <div
-                            id="avatarPreview"
-                            class="rounded-circle grad-avatar-1 d-flex justify-content-center align-items-center shadow-subtle mb-3 overflow-hidden w-20 h-20">
-
+                    <!-- Profile Avatar Upload -->
+                    <div class="d-flex flex-column align-items-center mb-4">
+                        <div id="avatarPreview" class="rounded-circle grad-avatar-1 d-flex justify-content-center align-items-center shadow-subtle mb-3 overflow-hidden w-20 h-20">
                             <i class="fa-solid fa-user text-inverse fs-1"></i>
-
                         </div>
-
-
-                        <label
-                            class="btn btn-sm bg-input border border-subtle text-secondary shadow-subtle rounded-3 px-3 py-2 d-flex align-items-center gap-2">
-
+                        <label class="btn btn-sm bg-input border border-subtle text-secondary shadow-subtle rounded-3 px-3 py-2 d-flex align-items-center gap-2" role="button">
                             <i class="fa-solid fa-camera"></i>
-
-                            <span>
-                                Change Photo
-                            </span>
-
-                            <input
-                                type="file"
-                                id="avatarInput"
-                                class="d-none"
-                                accept="image/*">
-
+                            <span>Change Photo</span>
+                            <input type="file" id="avatarInput" class="d-none" accept="image/*">
                         </label>
-
-
-                        <input
-                            type="hidden"
-                            id="avatarPath"
-                            value="">
-
+                        <input type="hidden" id="avatarPath" value="">
                     </div>
 
-
-                    <!-- Form Fields -->
+                    <!-- Contact Details Form -->
                     <div class="row g-3">
-
-
-                        <!-- Name -->
                         <div class="col-12">
-
-                            <label
-                                for="contactName"
-                                class="form-label text-secondary small fw-semibold mb-1">
-
-                                Full Name
-                                <span class="text-emergency">*</span>
-
-                            </label>
-
-                            <input
-                                type="text"
-                                id="contactName"
-                                class="form-control bg-input border-input py-2 text-black shadow-none"
-                                placeholder="Enter full name">
-
-                            <p
-                                id="contactNameError"
-                                class="d-none text-emergency small mt-1 mb-0">
-
-                                Name should contain only letters and spaces
-                                (2-50 characters)
-
-                            </p>
-
+                            <label for="contactName" class="form-label text-secondary small fw-semibold mb-1">Full Name <span class="text-emergency">*</span></label>
+                            <input type="text" id="contactName" class="form-control bg-input border-input py-2 text-black shadow-none" placeholder="Enter full name">
+                            <p id="contactNameError" class="d-none text-emergency small mt-1 mb-0">Name should contain only letters and spaces (2-50 characters)</p>
                         </div>
 
-
-                        <!-- Phone -->
                         <div class="col-12">
-
-                            <label
-                                for="contactPhone"
-                                class="form-label text-secondary small fw-semibold mb-1">
-
-                                Phone Number
-                                <span class="text-emergency">*</span>
-
-                            </label>
-
-                            <input
-                                type="text"
-                                id="contactPhone"
-                                class="form-control bg-input border-input py-2 text-black shadow-none"
-                                placeholder="e.g., 01012345678">
-
-                            <p
-                                id="contactPhoneError"
-                                class="d-none text-emergency small mt-1 mb-0">
-
-                                Please enter a valid Egyptian phone number
-
-                            </p>
-
+                            <label for="contactPhone" class="form-label text-secondary small fw-semibold mb-1">Phone Number <span class="text-emergency">*</span></label>
+                            <input type="text" id="contactPhone" class="form-control bg-input border-input py-2 text-black shadow-none" placeholder="e.g., 01012345678">
+                            <p id="contactPhoneError" class="d-none text-emergency small mt-1 mb-0">Please enter a valid Egyptian phone number</p>
                         </div>
 
-
-                        <!-- Email -->
                         <div class="col-12">
-
-                            <label
-                                for="contactEmail"
-                                class="form-label text-secondary small fw-semibold mb-1">
-
-                                Email Address
-
-                            </label>
-
-                            <input
-                                type="email"
-                                id="contactEmail"
-                                class="form-control bg-input border-input py-2 text-black shadow-none"
-                                placeholder="name@example.com">
-
-                            <p
-                                id="contactEmailError"
-                                class="d-none text-emergency small mt-1 mb-0">
-
-                                Please enter a valid email address
-
-                            </p>
-
+                            <label for="contactEmail" class="form-label text-secondary small fw-semibold mb-1">Email Address</label>
+                            <input type="email" id="contactEmail" class="form-control bg-input border-input py-2 text-black shadow-none" placeholder="name@example.com">
+                            <p id="contactEmailError" class="d-none text-emergency small mt-1 mb-0">Please enter a valid email address</p>
                         </div>
 
-
-                        <!-- Address -->
                         <div class="col-12">
-
-                            <label
-                                for="contactAddress"
-                                class="form-label text-secondary small fw-semibold mb-1">
-
-                                Address
-
-                            </label>
-
-                            <input
-                                type="text"
-                                id="contactAddress"
-                                class="form-control bg-input border-input py-2 text-black shadow-none"
-                                placeholder="Enter address">
-
+                            <label for="contactAddress" class="form-label text-secondary small fw-semibold mb-1">Address</label>
+                            <input type="text" id="contactAddress" class="form-control bg-input border-input py-2 text-black shadow-none" placeholder="Enter address">
                         </div>
 
-
-                        <!-- Group -->
                         <div class="col-12">
-
-                            <label
-                                for="contactGroup"
-                                class="form-label text-secondary small fw-semibold mb-1">
-
-                                Group
-
-                            </label>
-
-                            <select
-                                id="contactGroup"
-                                class="form-select bg-input border-input py-2 text-black shadow-none">
-
-                                <option value="" disabled selected>
-                                    Select a group
-                                </option>
-
-                                <option value="family">
-                                    Family
-                                </option>
-
-                                <option value="friends">
-                                    Friends
-                                </option>
-
-                                <option value="work">
-                                    Work
-                                </option>
-
-                                <option value="school">
-                                    School
-                                </option>
-
-                                <option value="other">
-                                    Other
-                                </option>
-
+                            <label for="contactGroup" class="form-label text-secondary small fw-semibold mb-1">Group</label>
+                            <select id="contactGroup" class="form-select bg-input border-input py-2 text-black shadow-none">
+                                <option value="" disabled selected>Select a group</option>
+                                <option value="family">Family</option>
+                                <option value="friends">Friends</option>
+                                <option value="work">Work</option>
+                                <option value="school">School</option>
+                                <option value="other">Other</option>
                             </select>
-
                         </div>
 
-
-                        <!-- Notes -->
                         <div class="col-12">
-
-                            <label
-                                for="contactNotes"
-                                class="form-label text-secondary small fw-semibold mb-1">
-
-                                Notes
-
-                            </label>
-
-                            <textarea
-                                id="contactNotes"
-                                class="form-control bg-input border-input py-2 text-black shadow-none resize-none"
-                                rows="2"
-                                placeholder="Add notes about this contact"></textarea>
-
+                            <label for="contactNotes" class="form-label text-secondary small fw-semibold mb-1">Notes</label>
+                            <textarea id="contactNotes" class="form-control bg-input border-input py-2 text-black shadow-none resize-none" rows="2" placeholder="Add notes about this contact"></textarea>
                         </div>
-
                     </div>
 
-
-                    <!-- Checkboxes -->
-                    <div
-                        class="d-flex flex-wrap gap-4 mt-4 mb-2 px-1">
-
-                        <div
-                            class="form-check d-flex align-items-center gap-2 m-0 p-0">
-
-                            <input
-                                class="form-check-input border-input m-0 shadow-none"
-                                type="checkbox"
-                                id="contactFavorite">
-
-                            <label
-                                class="form-check-label text-secondary small fw-medium d-flex align-items-center gap-1"
-                                for="contactFavorite">
-
-                                <i class="fa-solid fa-star text-favorite"></i>
-                                Favorite
-
+                    <!-- Toggles -->
+                    <div class="d-flex flex-wrap gap-4 mt-4 mb-2 px-1">
+                        <div class="form-check d-flex align-items-center gap-2 m-0 p-0">
+                            <input class="form-check-input border-input m-0 shadow-none" type="checkbox" id="contactFavorite">
+                            <label class="form-check-label text-secondary small fw-medium d-flex align-items-center gap-1" for="contactFavorite">
+                                <i class="fa-solid fa-star text-favorite"></i> Favorite
                             </label>
-
                         </div>
 
-
-                        <div
-                            class="form-check d-flex align-items-center gap-2 m-0 p-0">
-
-                            <input
-                                class="form-check-input border-input m-0 shadow-none"
-                                type="checkbox"
-                                id="contactEmergency">
-
-                            <label
-                                class="form-check-label text-secondary small fw-medium d-flex align-items-center gap-1"
-                                for="contactEmergency">
-
-                                <i class="fa-solid fa-heart-pulse text-emergency-icon"></i>
-                                Emergency
-
+                        <div class="form-check d-flex align-items-center gap-2 m-0 p-0">
+                            <input class="form-check-input border-input m-0 shadow-none" type="checkbox" id="contactEmergency">
+                            <label class="form-check-label text-secondary small fw-medium d-flex align-items-center gap-1" for="contactEmergency">
+                                <i class="fa-solid fa-heart-pulse text-emergency-icon"></i> Emergency
                             </label>
-
                         </div>
-
                     </div>
 
-
-                    <input
-                        type="hidden"
-                        id="contactId"
-                        value="">
-
+                    <!-- Single Hidden ID for Form State -->
+                    <input type="hidden" id="contactId" value="">
                 </div>
 
-
-                <!-- Actions -->
+                <!-- Dialog Buttons -->
                 <div class="d-flex gap-3 px-4 pb-4">
-
-                    <button
-                        type="submit"
-                        class="btn grad-brand-btn text-inverse border-0 rounded-3 py-2 flex-grow-1 fw-semibold shadow-glow-brand">
-
-                        <i class="fa-solid fa-check me-2"></i>
-                        Save Contact
-
+                    <button type="submit" class="btn grad-brand-btn text-inverse border-0 rounded-3 py-2 flex-grow-1 fw-semibold shadow-glow-brand">
+                        <i class="fa-solid fa-check me-2"></i> Save Contact
                     </button>
-
-
-                    <button
-                        type="button"
-                        id="cancelModalBtn"
-                        class="btn bg-input text-secondary border-0 rounded-3 py-2 flex-grow-1 fw-semibold">
-
+                    <button type="button" id="cancelModalBtn" class="btn bg-input text-secondary border-0 rounded-3 py-2 flex-grow-1 fw-semibold">
                         Cancel
-
                     </button>
-
                 </div>
-
             </form>
 
         </div>
-
     </div>
 
-
-    <!-- =========================================================
-         Scripts
-    ========================================================== -->
+    <!-- Scripts -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/all.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
-
 </html>
